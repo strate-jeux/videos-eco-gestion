@@ -18,9 +18,14 @@ const DATA_PATH = path.join(__dirname, "..", "data", "videos.json");
 const force = process.argv.includes("--force");
 const apiKey = process.env.YOUTUBE_API_KEY;
 
+// oEmbed répond 401 pour une vidéo privée et 404 pour une vidéo supprimée :
+// dans les deux cas le lien est mort et doit être signalé sur le site.
 async function fetchOembed(youtubeId) {
   const url = `https://www.youtube.com/oembed?url=https://youtu.be/${youtubeId}&format=json`;
   const res = await fetch(url);
+  if (res.status === 401 || res.status === 404) {
+    return { indisponible: true };
+  }
   if (!res.ok) throw new Error(`oEmbed HTTP ${res.status}`);
   const data = await res.json();
   return { titre: data.title, chaine: data.author_name };
@@ -54,7 +59,13 @@ const aTraiter = videos.filter((v) => force || !v.titre);
 let ok = 0;
 for (const video of aTraiter) {
   try {
-    const { titre, chaine } = await fetchOembed(video.youtubeId);
+    const { titre, chaine, indisponible } = await fetchOembed(video.youtubeId);
+    if (indisponible) {
+      video.indisponible = true;
+      console.log(`ABSENT ${video.youtubeId} : vidéo privée ou supprimée`);
+      continue;
+    }
+    delete video.indisponible;
     video.titre = titre;
     if (!video.chaine || force) video.chaine = chaine;
     ok++;

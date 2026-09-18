@@ -7,10 +7,10 @@ gratuitement sur GitHub Pages.
 
 ## Fonctionnalités
 
-- Recherche par mots-clés (titre, résumé, thème)
+- Recherche par mots-clés (titre, résumé, thème, chaîne, mots-clés)
 - Filtre par thème principal
-- Fiche par vidéo : titre, résumé, durée, thème, pouvoir de captation
-  (étoiles), lien vers YouTube
+- Fiche par vidéo : titre, chaîne, ton, résumé, piste pédagogique, mots-clés,
+  durée, pouvoir de captation (étoiles), lien vers YouTube
 - Disclaimer enseignant toujours visible (bandeau + pied de page)
 
 Volontairement absent : pas de champ "niveau" (retiré par rapport à la v1).
@@ -18,83 +18,103 @@ Volontairement absent : pas de champ "niveau" (retiré par rapport à la v1).
 ## Structure du projet
 
 ```
-index.html            page unique
-css/styles.css         charte graphique (voir plus bas)
-js/app.js              recherche, filtres, rendu des fiches
-data/videos.json       les 41 vidéos (une entrée par vidéo)
-scripts/fetch-metadata.mjs   script pour récupérer titre + durée via yt-dlp
+index.html                   page unique
+css/styles.css               charte graphique (voir plus bas)
+js/app.js                    recherche, filtres, rendu des fiches
+data/videos.json             les 41 vidéos — source de vérité du site
+data/fiches.json             les 40 analyses éditoriales (tableau d'origine)
+scripts/fetch-metadata.mjs   récupère titre + chaîne via oEmbed
+scripts/import-fiches.mjs    rapproche fiches.json et videos.json par le titre
+.github/workflows/           bouton "Run workflow" qui lance les deux scripts
 ```
 
 ## Modèle de données (`data/videos.json`)
 
-| Champ         | Origine            | Détail                                          |
-|---------------|--------------------|--------------------------------------------------|
-| `youtubeId`   | Fourni             | identifiant de la vidéo (`youtu.be/<id>`)        |
-| `titre`       | Auto (yt-dlp)      | titre exact de la vidéo                          |
-| `duree`       | Auto (yt-dlp)      | format `mm:ss`                                   |
-| `theme`       | Manuel             | ex. Marché, RH, Marketing, Droit, RSE, Finance…  |
-| `motsCles`    | Manuel (liste)     | sert à la recherche par mots-clés                |
-| `resume`      | Manuel (2-3 phrases)| rédigé après visionnage                          |
-| `captation`   | Manuel (0-5)       | pouvoir de captation de l'attention, en étoiles  |
+| Champ              | Origine              | Détail                                           |
+|--------------------|----------------------|--------------------------------------------------|
+| `youtubeId`        | Fourni               | identifiant de la vidéo (`youtu.be/<id>`)        |
+| `titre`            | Auto (oEmbed)        | titre exact de la vidéo                          |
+| `chaine`           | Auto (oEmbed)        | ex. Les Echos, Le Monde…                         |
+| `duree`            | Auto (clé API)       | format `mm:ss`, vide sans clé — voir plus bas    |
+| `theme`            | Fiche / manuel       | Économie, Marketing, Stratégie, Droit, RSE…      |
+| `discipline`       | Fiche / manuel       | intitulé détaillé de la piste pédagogique        |
+| `ton`              | Fiche / manuel       | ex. "Pédagogique & analytique"                   |
+| `motsCles`         | Fiche / manuel       | sert à la recherche par mots-clés                |
+| `resume`           | Fiche / manuel       | 2-3 phrases                                      |
+| `pistePedagogique` | Fiche / manuel       | exploitation en cours                            |
+| `captation`        | Manuel (0-5)         | pouvoir de captation de l'attention, en étoiles  |
+| `indisponible`     | Auto                 | `true` si la vidéo est privée ou supprimée       |
 
-Les 41 vidéos du brief sont déjà présentes avec seulement `youtubeId` rempli.
-Le reste est à compléter (voir ci-dessous).
+`data/videos.json` est la source de vérité : c'est ce fichier qu'on édite à la
+main. Les scripts ne remplissent que les champs **vides**, ils n'écrasent donc
+jamais une correction (sauf lancés avec `--force`).
 
-## Compléter les métadonnées automatiques (titre + durée)
+## Mettre à jour les métadonnées (titre, chaîne, fiches)
 
-Ce projet a été généré dans un environnement sans accès réseau sortant vers
-YouTube ; les titres et durées n'ont donc **pas** pu être récupérés
-automatiquement.
+### Depuis un navigateur — aucune installation, marche sur iPad
 
-### Option A — depuis un navigateur (aucune installation, marche sur iPad)
+1. Va sur https://github.com/strate-jeux/videos-eco-gestion
+2. Onglet **Actions**
+3. À gauche, **"Récupérer les métadonnées YouTube"**
+4. Bouton **"Run workflow"** → laisse la case décochée → **"Run workflow"**
+5. Au bout d'une minute, `data/videos.json` est mis à jour et le commit poussé
+   automatiquement.
 
-Un bouton GitHub Actions fait tourner le script à ta place, sur les serveurs
-de GitHub :
+### Sur ordinateur
 
-1. Va sur la page du dépôt : `https://github.com/strate-jeux/videos-eco-gestion`
-2. Onglet **Actions** (en haut)
-3. Dans la liste à gauche, clique sur **"Récupérer titres et durées YouTube"**
-4. Bouton **"Run workflow"** (à droite) → laisse "force" décoché → **"Run workflow"**
-5. Attends 1 à 2 minutes, puis rafraîchis la page : le run passe au ✅ vert
-   quand c'est fini. Le fichier `data/videos.json` est automatiquement mis à
-   jour et le commit poussé sur le dépôt — rien d'autre à faire.
-6. Si le run échoue (❌ rouge), ouvre-le pour voir le détail : YouTube bloque
-   parfois les téléchargements automatisés ("Sign in to confirm you're not a
-   bot") ; relancer une seconde fois résout souvent le problème.
+```bash
+node scripts/fetch-metadata.mjs   # titres + chaînes via oEmbed
+node scripts/import-fiches.mjs    # associe les fiches éditoriales
+```
 
-### Option B — sur ordinateur (Mac/Windows/Linux)
+### Pourquoi pas yt-dlp ?
 
-1. Installer [yt-dlp](https://github.com/yt-dlp/yt-dlp) : `pip install yt-dlp`
-   (ou `brew install yt-dlp`).
-2. Lancer :
-   ```bash
-   npm run fetch-metadata
-   ```
-   Le script ne touche qu'aux champs `titre` et `duree` ; il laisse intacts
-   `theme`, `motsCles`, `resume` et `captation`. Il ne re-télécharge pas les
-   vidéos déjà renseignées (sauf avec `--force`).
+yt-dlp est systématiquement bloqué depuis les serveurs GitHub ("Sign in to
+confirm you're not a bot"), quel que soit le client utilisé. L'endpoint oEmbed
+public de YouTube, lui, répond normalement et fournit titre et chaîne sans clé
+API : c'est donc lui qui est utilisé.
 
-Alternative sans yt-dlp : le titre seul peut être récupéré sans clé API via
-`https://www.youtube.com/oembed?url=<lien>&format=json` ; pour la durée
-exacte il faut l'API YouTube Data v3 (clé gratuite) ou yt-dlp.
+### Durées
+
+oEmbed n'expose pas la durée des vidéos. Pour la récupérer, il faut une clé
+gratuite de l'API YouTube Data v3 :
+
+1. Créer la clé sur https://console.cloud.google.com (activer "YouTube Data
+   API v3").
+2. Dans le dépôt : **Settings → Secrets and variables → Actions → New
+   repository secret**, nommé `YOUTUBE_API_KEY`.
+3. Relancer le workflow : les durées se remplissent toutes seules.
+
+Sans cette clé, le champ `duree` reste vide et le site ne l'affiche simplement
+pas — tout le reste fonctionne normalement.
 
 ## Compléter les champs éditoriaux
 
-Après avoir visionné chaque vidéo, éditez son entrée dans
-`data/videos.json` pour renseigner `theme`, `motsCles`, `resume` et
-`captation`. Aucune recompilation n'est nécessaire : le site lit le fichier
-JSON directement.
+39 vidéos sur 41 ont déjà thème, ton, résumé, piste pédagogique et mots-clés,
+importés du tableau d'analyse (`data/fiches.json`). Restent à compléter à la
+main, après visionnage :
+
+- le champ `captation` (0 à 5 étoiles) de chaque vidéo ;
+- la fiche de "Les clubs de football peuvent-ils faire faillite ?"
+  (`gQhbsINSBvY`), absente du tableau d'analyse ;
+- le sort de `OL4Lz5SAYUY`, dont la vidéo est privée ou supprimée : soit la
+  remplacer par un lien valide, soit retirer l'entrée. La fiche "Comment un
+  gamin pauvre a bâti l'empire Starbucks" du tableau n'a trouvé aucune vidéo
+  correspondante — il s'agit probablement de celle-là.
+
+Éditer `data/videos.json` suffit : aucune recompilation, le site lit le JSON
+directement.
 
 ## Ajouter une nouvelle vidéo
 
 Ajoutez une entrée dans `data/videos.json` :
 
 ```json
-{ "youtubeId": "XXXXXXXXXXX", "titre": "", "duree": "", "theme": "", "motsCles": [], "resume": "", "captation": 0 }
+{ "youtubeId": "XXXXXXXXXXX", "titre": "", "chaine": "", "duree": "", "theme": "", "discipline": "", "ton": "", "motsCles": [], "resume": "", "pistePedagogique": "", "captation": 0 }
 ```
 
-puis relancez `npm run fetch-metadata` pour récupérer titre et durée, et
-complétez les champs manuels.
+puis relancez le workflow (ou `node scripts/fetch-metadata.mjs`) pour récupérer
+titre et chaîne, et complétez les champs éditoriaux.
 
 ## Tester en local
 

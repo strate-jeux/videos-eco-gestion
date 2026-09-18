@@ -60,7 +60,9 @@
 
   function videoCardHtml(video) {
     const url = `https://youtu.be/${video.youtubeId}`;
-    const title = video.titre || "(titre à récupérer)";
+    const title = video.indisponible
+      ? "Vidéo indisponible"
+      : video.titre || "(titre à récupérer)";
     return `
       <article class="video-card">
         <a class="video-card__thumb" href="${url}" target="_blank" rel="noopener">
@@ -74,7 +76,11 @@
           </div>
           <h3 class="video-card__title">${escapeHtml(title)}</h3>
           ${video.ton ? `<p class="video-card__ton">${escapeHtml(video.ton)}</p>` : ""}
-          <p class="video-card__summary">${escapeHtml(video.resume || "Résumé à venir.")}</p>
+          <p class="video-card__summary">${
+            video.indisponible
+              ? "Cette vidéo n'est plus accessible publiquement (privée ou supprimée)."
+              : escapeHtml(video.resume || "Résumé à venir.")
+          }</p>
           ${
             video.pistePedagogique
               ? `<details class="video-card__piste">
