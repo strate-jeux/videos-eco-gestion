@@ -44,7 +44,25 @@ Le reste est à compléter (voir ci-dessous).
 
 Ce projet a été généré dans un environnement sans accès réseau sortant vers
 YouTube ; les titres et durées n'ont donc **pas** pu être récupérés
-automatiquement. Pour les compléter :
+automatiquement.
+
+### Option A — depuis un navigateur (aucune installation, marche sur iPad)
+
+Un bouton GitHub Actions fait tourner le script à ta place, sur les serveurs
+de GitHub :
+
+1. Va sur la page du dépôt : `https://github.com/strate-jeux/videos-eco-gestion`
+2. Onglet **Actions** (en haut)
+3. Dans la liste à gauche, clique sur **"Récupérer titres et durées YouTube"**
+4. Bouton **"Run workflow"** (à droite) → laisse "force" décoché → **"Run workflow"**
+5. Attends 1 à 2 minutes, puis rafraîchis la page : le run passe au ✅ vert
+   quand c'est fini. Le fichier `data/videos.json` est automatiquement mis à
+   jour et le commit poussé sur le dépôt — rien d'autre à faire.
+6. Si le run échoue (❌ rouge), ouvre-le pour voir le détail : YouTube bloque
+   parfois les téléchargements automatisés ("Sign in to confirm you're not a
+   bot") ; relancer une seconde fois résout souvent le problème.
+
+### Option B — sur ordinateur (Mac/Windows/Linux)
 
 1. Installer [yt-dlp](https://github.com/yt-dlp/yt-dlp) : `pip install yt-dlp`
    (ou `brew install yt-dlp`).

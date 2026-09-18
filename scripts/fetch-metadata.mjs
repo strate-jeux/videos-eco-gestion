@@ -31,7 +31,14 @@ function fetchOne(youtubeId) {
   const url = `https://youtu.be/${youtubeId}`;
   const raw = execFileSync(
     "yt-dlp",
-    ["--skip-download", "--print", "%(title)s\t%(duration)s", url],
+    [
+      "--skip-download",
+      "--extractor-args",
+      "youtube:player_client=android,web",
+      "--print",
+      "%(title)s\t%(duration)s",
+      url,
+    ],
     { encoding: "utf8" }
   ).trim();
   const [titre, dureeSecondes] = raw.split("\t");
