@@ -1,0 +1,36 @@
+name: Diagnostic accès YouTube
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test oEmbed (titre + chaîne, sans clé API)
+        run: |
+          echo "--- oEmbed ---"
+          curl -sS -w "\nHTTP %{http_code}\n" \
+            "https://www.youtube.com/oembed?url=https://youtu.be/iScA9MHUqU4&format=json" || true
+
+      - name: Test noembed
+        run: |
+          echo "--- noembed ---"
+          curl -sS -w "\nHTTP %{http_code}\n" \
+            "https://noembed.com/embed?url=https://youtu.be/iScA9MHUqU4" || true
+
+      - name: Test page watch (lengthSeconds)
+        run: |
+          echo "--- watch page ---"
+          curl -sS -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" \
+            "https://www.youtube.com/watch?v=iScA9MHUqU4" \
+            | grep -o '"lengthSeconds":"[0-9]*"' | head -3 || echo "pas de lengthSeconds"
+
+      - name: Test yt-dlp clients alternatifs
+        run: |
+          pip install --quiet --upgrade yt-dlp
+          for client in tv ios web_embedded mweb; do
+            echo "--- yt-dlp player_client=$client ---"
+            yt-dlp --skip-download --extractor-args "youtube:player_client=$client" \
+              --print "%(title)s | %(duration)s" "https://youtu.be/iScA9MHUqU4" 2>&1 | tail -3 || true
+          done
