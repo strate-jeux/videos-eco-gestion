@@ -1,10 +1,10 @@
-name: Récupérer titres et durées YouTube
+name: Récupérer les métadonnées YouTube
 
 on:
   workflow_dispatch:
     inputs:
       force:
-        description: "Re-télécharger aussi les vidéos déjà renseignées"
+        description: "Écraser aussi les champs déjà remplis"
         type: boolean
         default: false
 
@@ -21,13 +21,17 @@ jobs:
       - name: Installer Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - name: Installer yt-dlp
-        run: pip install --upgrade yt-dlp
-
-      - name: Lancer le script de récupération
+      - name: Récupérer titres et chaînes (oEmbed)
+        env:
+          # Optionnel : ajouter un secret YOUTUBE_API_KEY pour récupérer aussi
+          # les durées (oEmbed ne les expose pas).
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: node scripts/fetch-metadata.mjs ${{ inputs.force && '--force' || '' }}
+
+      - name: Associer les fiches éditoriales
+        run: node scripts/import-fiches.mjs ${{ inputs.force && '--force' || '' }}
 
       - name: Enregistrer les changements
         run: |
@@ -37,6 +41,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Aucun changement à enregistrer."
           else
-            git commit -m "Mise à jour automatique des titres et durées YouTube"
+            git commit -m "Mise à jour automatique des métadonnées vidéo"
             git push
           fi

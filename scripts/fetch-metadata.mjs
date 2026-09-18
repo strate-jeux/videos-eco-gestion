@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-// Récupère automatiquement le titre et la durée des vidéos via yt-dlp.
-// Ne touche jamais aux champs éditorialisés à la main (theme, motsCles, resume, captation).
+// Récupère le titre et la chaîne de chaque vidéo via l'API oEmbed publique de
+// YouTube (aucune clé requise, fonctionne depuis un serveur).
 //
-// Prérequis : yt-dlp installé et accessible dans le PATH (pip install yt-dlp,
-// ou brew install yt-dlp). Nécessite un accès réseau sortant vers YouTube.
+// La durée n'est pas exposée par oEmbed : elle n'est récupérée que si la
+// variable d'environnement YOUTUBE_API_KEY est fournie (API YouTube Data v3).
+// Sans clé, le champ duree reste vide et le site ne l'affiche simplement pas.
 //
 // Usage : node scripts/fetch-metadata.mjs [--force]
-//   --force : re-télécharge aussi les vidéos qui ont déjà un titre/une durée.
+//   --force : rafraîchit aussi les vidéos déjà renseignées.
 
-import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -16,50 +16,70 @@ import path from "node:path";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_PATH = path.join(__dirname, "..", "data", "videos.json");
 const force = process.argv.includes("--force");
+const apiKey = process.env.YOUTUBE_API_KEY;
 
-function formatDuration(totalSeconds) {
-  const s = Math.round(Number(totalSeconds) || 0);
-  const h = Math.floor(s / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
-  const mm = h > 0 ? String(m).padStart(2, "0") : String(m);
-  const ss = String(sec).padStart(2, "0");
-  return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+async function fetchOembed(youtubeId) {
+  const url = `https://www.youtube.com/oembed?url=https://youtu.be/${youtubeId}&format=json`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`oEmbed HTTP ${res.status}`);
+  const data = await res.json();
+  return { titre: data.title, chaine: data.author_name };
 }
 
-function fetchOne(youtubeId) {
-  const url = `https://youtu.be/${youtubeId}`;
-  const raw = execFileSync(
-    "yt-dlp",
-    [
-      "--skip-download",
-      "--extractor-args",
-      "youtube:player_client=android,web",
-      "--print",
-      "%(title)s\t%(duration)s",
-      url,
-    ],
-    { encoding: "utf8" }
-  ).trim();
-  const [titre, dureeSecondes] = raw.split("\t");
-  return { titre, duree: formatDuration(dureeSecondes) };
+function formatDuration(iso) {
+  const m = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/.exec(iso || "");
+  if (!m) return "";
+  const [h, min, s] = [Number(m[1] || 0), Number(m[2] || 0), Number(m[3] || 0)];
+  const mm = h > 0 ? String(min).padStart(2, "0") : String(min);
+  return `${h > 0 ? h + ":" : ""}${mm}:${String(s).padStart(2, "0")}`;
+}
+
+// L'API Data v3 accepte 50 identifiants par appel : une seule requête suffit.
+async function fetchDurations(ids) {
+  const url = new URL("https://www.googleapis.com/youtube/v3/videos");
+  url.searchParams.set("part", "contentDetails");
+  url.searchParams.set("id", ids.join(","));
+  url.searchParams.set("key", apiKey);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`API Data v3 HTTP ${res.status}`);
+  const data = await res.json();
+  return new Map(
+    data.items.map((item) => [item.id, formatDuration(item.contentDetails.duration)])
+  );
 }
 
 const videos = JSON.parse(readFileSync(DATA_PATH, "utf8"));
+const aTraiter = videos.filter((v) => force || !v.titre);
 
-let updated = 0;
-for (const video of videos) {
-  if (!force && video.titre && video.duree) continue;
+let ok = 0;
+for (const video of aTraiter) {
   try {
-    const { titre, duree } = fetchOne(video.youtubeId);
+    const { titre, chaine } = await fetchOembed(video.youtubeId);
     video.titre = titre;
-    video.duree = duree;
-    updated++;
-    console.log(`OK  ${video.youtubeId} -> "${titre}" (${duree})`);
+    if (!video.chaine || force) video.chaine = chaine;
+    ok++;
+    console.log(`OK    ${video.youtubeId} -> "${titre}" (${chaine})`);
   } catch (err) {
     console.error(`ECHEC ${video.youtubeId} : ${err.message}`);
   }
 }
 
+if (apiKey) {
+  const ids = videos.filter((v) => force || !v.duree).map((v) => v.youtubeId);
+  for (let i = 0; i < ids.length; i += 50) {
+    try {
+      const durees = await fetchDurations(ids.slice(i, i + 50));
+      for (const video of videos) {
+        const duree = durees.get(video.youtubeId);
+        if (duree) video.duree = duree;
+      }
+    } catch (err) {
+      console.error(`ECHEC durées : ${err.message}`);
+    }
+  }
+} else {
+  console.log("\nPas de YOUTUBE_API_KEY : durées non récupérées (champ laissé vide).");
+}
+
 writeFileSync(DATA_PATH, JSON.stringify(videos, null, 2) + "\n");
-console.log(`\n${updated} vidéo(s) mise(s) à jour sur ${videos.length}.`);
+console.log(`\n${ok} titre(s) récupéré(s) sur ${aTraiter.length} traité(s).`);

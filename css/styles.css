@@ -265,11 +265,15 @@ h1, h2, h3 {
   flex: 1;
 }
 
-.video-card__theme {
-  align-self: flex-start;
-  background: var(--color-pale-pink);
-  color: var(--color-navy-dark);
-  font-size: 0.75rem;
+.video-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.video-card__theme,
+.video-card__chaine {
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -277,8 +281,67 @@ h1, h2, h3 {
   border-radius: 999px;
 }
 
-.video-card__theme[data-theme=""] {
+.video-card__theme {
+  background: var(--color-pale-pink);
+  color: var(--color-navy-dark);
+}
+
+.video-card__chaine {
+  background: var(--color-baby-blue);
+  color: var(--color-navy-dark);
+}
+
+.video-card__ton {
+  margin: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-coral);
+}
+
+.video-card__piste {
+  background: var(--color-cream);
+  border-left: 3px solid var(--color-mustard);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: 0.85rem;
+}
+
+.video-card__piste summary {
+  cursor: pointer;
+  padding: 8px 12px;
+  font-weight: 600;
+  color: var(--color-navy-dark);
+  list-style: none;
+}
+
+.video-card__piste summary::-webkit-details-marker {
   display: none;
+}
+
+.video-card__piste summary::before {
+  content: "💡 ";
+}
+
+.video-card__piste p {
+  margin: 0;
+  padding: 0 12px 10px;
+  color: var(--color-ink-soft);
+}
+
+.video-card__mots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.video-card__mots li {
+  font-size: 0.72rem;
+  color: var(--color-ink-soft);
+  background: rgba(18, 37, 63, 0.05);
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 
 .video-card__title {

@@ -31,6 +31,9 @@
       video.titre,
       video.resume,
       video.theme,
+      video.discipline,
+      video.chaine,
+      video.pistePedagogique,
       ...(video.motsCles || []),
     ]
       .join(" ")
@@ -65,9 +68,28 @@
           ${video.duree ? `<span class="video-card__duration">${escapeHtml(video.duree)}</span>` : ""}
         </a>
         <div class="video-card__body">
-          <span class="video-card__theme" data-theme="${escapeHtml(video.theme || "")}">${escapeHtml(video.theme || "")}</span>
+          <div class="video-card__tags">
+            ${video.theme ? `<span class="video-card__theme">${escapeHtml(video.theme)}</span>` : ""}
+            ${video.chaine ? `<span class="video-card__chaine">${escapeHtml(video.chaine)}</span>` : ""}
+          </div>
           <h3 class="video-card__title">${escapeHtml(title)}</h3>
+          ${video.ton ? `<p class="video-card__ton">${escapeHtml(video.ton)}</p>` : ""}
           <p class="video-card__summary">${escapeHtml(video.resume || "Résumé à venir.")}</p>
+          ${
+            video.pistePedagogique
+              ? `<details class="video-card__piste">
+                   <summary>Piste pédagogique${video.discipline ? ` — ${escapeHtml(video.discipline)}` : ""}</summary>
+                   <p>${escapeHtml(video.pistePedagogique)}</p>
+                 </details>`
+              : ""
+          }
+          ${
+            (video.motsCles || []).length
+              ? `<ul class="video-card__mots">${video.motsCles
+                  .map((mot) => `<li>${escapeHtml(mot)}</li>`)
+                  .join("")}</ul>`
+              : ""
+          }
           <div class="video-card__meta">
             <span class="video-card__rating" aria-label="Pouvoir de captation">${renderStars(video.captation)}</span>
             <a class="video-card__cta" href="${url}" target="_blank" rel="noopener">Voir sur YouTube ↗</a>
