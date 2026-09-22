@@ -390,7 +390,7 @@
       <div class="alert-icon" aria-hidden="true">⚠</div>
       <p class="screen-title">SYSTÈME COMPROMIS</p>
       <p class="screen-sub">
-        Programme malveillant détecté : <strong>SENTINELLE</strong><br />
+        Programme malveillant détecté : <strong>processus non identifié</strong><br />
         Chiffrement non autorisé des données en cours. Intervention requise.
       </p>
 
@@ -440,7 +440,7 @@
   "use strict";
 
   // Mot de passe attendu, légèrement obfusqué (voir README pour le changer).
-  var EXPECTED_CODES = [83, 69, 78, 84, 73, 78, 69, 76, 76, 69]; // S E N T I N E L L E
+  var EXPECTED_CODES = [83, 69, 78, 84, 73, 78, 69, 76, 76, 69];
   function getExpected() {
     return String.fromCharCode.apply(null, EXPECTED_CODES);
   }
@@ -462,7 +462,7 @@
   var LOG_STEPS = [
     "Authentification réussie...",
     "Localisation du processus malveillant...",
-    "Isolation de SENTINELLE...",
+    "Isolation du processus malveillant...",
     "Suppression des fichiers infectés...",
     "Restauration du chiffrement des données...",
     "Vérification de l'intégrité du système..."
