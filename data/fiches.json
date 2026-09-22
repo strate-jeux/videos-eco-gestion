@@ -758,5 +758,81 @@
       "data",
       "régulation"
     ]
+  },
+  {
+    "titre": "La mondialisation a-t-elle échoué ?",
+    "chaine": "ARTE",
+    "ton": "Analytique, prospectif et pédagogique",
+    "theme": "Économie",
+    "discipline": "Économie internationale / Stratégie",
+    "resume": "Ce documentaire interroge la soutenabilité du modèle de mondialisation face au retour du protectionnisme, aux tensions géopolitiques et à la crise écologique. Il décrypte les vulnérabilités des chaînes de valeur mondiales hyper-fragmentées, la perte de souveraineté industrielle et les dynamiques de relocalisation.",
+    "pistePedagogique": "Analyse des politiques commerciales, de la souveraineté économique et de la réorganisation des chaînes d'approvisionnement globales face aux chocs exogènes.",
+    "motsCles": [
+      "Mondialisation",
+      "protectionnisme",
+      "relocalisation",
+      "souveraineté",
+      "chaînes de valeur",
+      "commerce",
+      "réindustrialisation",
+      "ARTE"
+    ]
+  },
+  {
+    "titre": "Les États peuvent-ils s’endetter sans fin ?",
+    "chaine": "ARTE",
+    "ton": "Pédagogique et macroéconomique",
+    "theme": "Économie",
+    "discipline": "Macroéconomie / Droit public",
+    "resume": "La vidéo explore la question de la dette publique et des limites de la soutenabilité financière des États. Elle explique les mécanismes de création monétaire, le rôle déterminant des banques centrales dans le rachat de dettes, le soutien aux économies en crise et les risques d'inflation ou de hausse des taux.",
+    "pistePedagogique": "Étude de la politique budgétaire, des critères de soutenabilité de la dette publique et du rôle des banques centrales dans la stabilité financière globale.",
+    "motsCles": [
+      "Dette publique",
+      "banques centrales",
+      "politique budgétaire",
+      "inflation",
+      "soutenabilité",
+      "création monétaire",
+      "taux d’intérêt",
+      "ARTE"
+    ]
+  },
+  {
+    "titre": "Pouvons-nous faire décroître l'économie ?",
+    "chaine": "ARTE",
+    "ton": "Scientifique et prospectif",
+    "theme": "Économie",
+    "discipline": "Économie de l'environnement / RSE",
+    "resume": "Ce reportage questionne la viabilité du modèle de croissance économique perpétuelle face aux limites physiques de la planète. Il examine le concept de décroissance, le débat sur le découplage entre croissance du PIB et empreinte carbone, ainsi que les nécessaires transformations des modèles de consommation.",
+    "pistePedagogique": "Réflexion sur les indicateurs alternatifs au PIB, la sobriété économique et les impératifs de la transition écologique pour les organisations.",
+    "motsCles": [
+      "Décroissance",
+      "PIB",
+      "transition écologique",
+      "sobriété",
+      "empreinte carbone",
+      "limites physiques",
+      "RSE",
+      "ARTE"
+    ]
+  },
+  {
+    "titre": "Peut-on mieux répartir la richesse ?",
+    "chaine": "ARTE",
+    "ton": "Social, économique et philosophique",
+    "theme": "Économie",
+    "discipline": "Économie publique / Justice sociale",
+    "resume": "La vidéo étudie le creusement des inégalités économiques mondiales et les leviers d'une redistribution plus équitable. Elle analyse les instruments fiscaux (impôt progressif, taxation du capital), les systèmes de protection sociale et le concept de revenu universel pour concilier équité sociale et incitation économique.",
+    "pistePedagogique": "Support de débat sur la redistribution de la richesse, la politique fiscale, l'arbitrage équité/efficience et la justice redistributive.",
+    "motsCles": [
+      "Inégalités",
+      "redistribution",
+      "justice sociale",
+      "fiscalité",
+      "revenu universel",
+      "capital",
+      "politique sociale",
+      "ARTE"
+    ]
   }
 ]

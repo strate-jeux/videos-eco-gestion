@@ -1,6 +1,7 @@
 # Répertoire vidéo Éco-Gestion
 
-Un répertoire de vidéos YouTube utiles aux cours d'économie-gestion (STMG/BTS),
+Un répertoire de vidéos YouTube utiles aux cours d'économie, gestion, management,
+stratégie et marketing,
 pour s'appuyer sur des contenus vidéo bien faits plutôt que de chercher à les
 refaire. Site statique, sans base de données, pensé pour être hébergé
 gratuitement sur GitHub Pages.

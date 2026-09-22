@@ -22,19 +22,6 @@
     "captation": 0
   },
   {
-    "youtubeId": "gQhbsINSBvY",
-    "titre": "Les clubs de football peuvent-ils faire faillite ?",
-    "chaine": "Le Monde",
-    "duree": "",
-    "theme": "",
-    "discipline": "",
-    "ton": "",
-    "motsCles": [],
-    "resume": "",
-    "pistePedagogique": "",
-    "captation": 0
-  },
-  {
     "youtubeId": "4MVVWkALeYE",
     "titre": "Faut-il forcément être heureux au travail ?",
     "chaine": "Le Monde",
@@ -209,20 +196,6 @@
     "resume": "Étudie le retour de l'inflation et questionne la hausse systématique des taux des banques centrales. Analyse les impacts tripartites (consommation, salaires/Smic, épargne) et montre le rôle des marges des entreprises et de la démondialisation dans la persistance de la hausse des prix.",
     "pistePedagogique": "Étude du rôle des banques centrales, des causes de l'inflation et de la boucle prix-salaires.",
     "captation": 0
-  },
-  {
-    "youtubeId": "OL4Lz5SAYUY",
-    "titre": "",
-    "chaine": "",
-    "duree": "",
-    "theme": "",
-    "discipline": "",
-    "ton": "",
-    "motsCles": [],
-    "resume": "",
-    "pistePedagogique": "",
-    "captation": 0,
-    "indisponible": true
   },
   {
     "youtubeId": "QdoU2tZYJbQ",
@@ -882,6 +855,58 @@
     ],
     "resume": "Documente la crise financière de GiFi. Explique comment le management paternaliste de Philippe Ginestet, combiné au crash de la migration du système d'information ERP en 2023 (perte de traçabilité des stocks), a détruit la rentabilité et conduit la direction à mettre l'enseigne en vente.",
     "pistePedagogique": "Analyse de l'importance stratégique des ERP en grande distribution, de la conduite du changement et de la gestion de crise.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "fxAp3k7SzNI",
+    "titre": "",
+    "chaine": "",
+    "duree": "",
+    "theme": "",
+    "discipline": "",
+    "ton": "",
+    "motsCles": [],
+    "resume": "",
+    "pistePedagogique": "",
+    "captation": 0
+  },
+  {
+    "youtubeId": "AXPGXbrH5BI",
+    "titre": "",
+    "chaine": "",
+    "duree": "",
+    "theme": "",
+    "discipline": "",
+    "ton": "",
+    "motsCles": [],
+    "resume": "",
+    "pistePedagogique": "",
+    "captation": 0
+  },
+  {
+    "youtubeId": "URn334bS-tw",
+    "titre": "",
+    "chaine": "",
+    "duree": "",
+    "theme": "",
+    "discipline": "",
+    "ton": "",
+    "motsCles": [],
+    "resume": "",
+    "pistePedagogique": "",
+    "captation": 0
+  },
+  {
+    "youtubeId": "B-O161bR47s",
+    "titre": "",
+    "chaine": "",
+    "duree": "",
+    "theme": "",
+    "discipline": "",
+    "ton": "",
+    "motsCles": [],
+    "resume": "",
+    "pistePedagogique": "",
     "captation": 0
   }
 ]

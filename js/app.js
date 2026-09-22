@@ -118,10 +118,10 @@
   }
 
   function setupDisclaimerToggle() {
-    const banner = document.getElementById("disclaimer");
+    const hero = document.getElementById("disclaimer");
     const toggle = document.getElementById("disclaimer-toggle");
     toggle.addEventListener("click", () => {
-      const expanded = banner.classList.toggle("is-expanded");
+      const expanded = hero.classList.toggle("is-expanded");
       toggle.setAttribute("aria-expanded", String(expanded));
       toggle.textContent = expanded ? "Réduire" : "Lire le disclaimer complet";
     });

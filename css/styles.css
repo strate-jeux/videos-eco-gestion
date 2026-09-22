@@ -63,58 +63,6 @@ h1, h2, h3 {
   padding: 0 20px;
 }
 
-/* --- Bandeau disclaimer --- */
-.disclaimer-banner {
-  background: var(--color-navy-dark);
-  color: var(--color-cream);
-  font-size: 0.9rem;
-  padding: 10px 0;
-}
-
-.disclaimer-banner__row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.disclaimer-banner__icon {
-  font-size: 1.1rem;
-}
-
-.disclaimer-banner__text {
-  flex: 1;
-  min-width: 220px;
-}
-
-.disclaimer-banner__toggle {
-  background: none;
-  border: 1px solid rgba(253, 248, 239, 0.4);
-  color: var(--color-cream);
-  border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.disclaimer-banner__toggle:hover {
-  border-color: var(--color-mustard);
-  color: var(--color-mustard);
-}
-
-.disclaimer-banner__full {
-  display: none;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(253, 248, 239, 0.2);
-  max-width: 900px;
-}
-
-.disclaimer-banner.is-expanded .disclaimer-banner__full {
-  display: block;
-}
-
 /* --- Header / hero --- */
 .hero {
   background: var(--color-navy);
@@ -159,6 +107,47 @@ h1, h2, h3 {
   color: rgba(253, 248, 239, 0.85);
   font-size: 1.05rem;
   margin-top: 14px;
+}
+
+.hero__disclaimer {
+  border-left: 3px solid var(--color-mustard);
+  padding-left: 14px;
+  font-size: 0.92rem;
+  max-width: 680px;
+}
+
+.hero__disclaimer-toggle {
+  background: none;
+  border: 1px solid rgba(253, 248, 239, 0.4);
+  color: var(--color-cream);
+  font-family: inherit;
+  border-radius: 999px;
+  padding: 3px 12px;
+  margin-left: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hero__disclaimer-toggle:hover {
+  border-color: var(--color-mustard);
+  color: var(--color-mustard);
+}
+
+.hero__disclaimer-full {
+  display: none;
+  max-width: 680px;
+  margin-top: 4px;
+  padding-left: 17px;
+}
+
+.hero__disclaimer-full p {
+  font-size: 0.88rem;
+  color: rgba(253, 248, 239, 0.75);
+}
+
+.hero.is-expanded .hero__disclaimer-full {
+  display: block;
 }
 
 /* --- Barre de recherche / filtres --- */
