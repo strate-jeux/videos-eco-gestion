@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>SECURITY-NODE-07 — Console de neutralisation</title>
+<meta name="description" content="Mission 404 — écran final du jeu de piste cybersécurité." />
+<style>
+  :root {
+    --bg: #05070a;
+    --panel: #0b0f14;
+    --panel-border: #1c2530;
+    --text-dim: #6b7c8c;
+    --text: #c9d6e0;
+    --red: #ff3b3b;
+    --red-dim: #7a1f1f;
+    --orange: #ff9d3b;
+    --green: #33d17a;
+    --green-dim: #123a25;
+    --mono: 'JetBrains Mono', 'Fira Code', 'Courier New', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: radial-gradient(ellipse at 50% -10%, #101822 0%, var(--bg) 60%);
+    color: var(--text);
+    font-family: var(--mono);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .console {
+    width: 100%;
+    max-width: 560px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 20px 60px rgba(0,0,0,0.6);
+    transition: box-shadow 0.6s ease;
+  }
+
+  body[data-state="success"] .console {
+    box-shadow: 0 0 0 1px rgba(51,209,122,0.15), 0 20px 70px rgba(51,209,122,0.12);
+  }
+
+  .console__bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #0d1218;
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2a3542;
+  }
+
+  .console__bar-title {
+    margin-left: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .console__bar-status {
+    margin-left: auto;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    background: rgba(255,59,59,0.12);
+    color: var(--red);
+    border: 1px solid rgba(255,59,59,0.35);
+    animation: pulse-badge 1.8s ease-in-out infinite;
+  }
+
+  body[data-state="success"] .console__bar-status {
+    background: rgba(51,209,122,0.12);
+    color: var(--green);
+    border-color: rgba(51,209,122,0.35);
+    animation: none;
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+
+  .console__body {
+    padding: 26px 22px 24px;
+    position: relative;
+  }
+
+  /* --- Alert screen --- */
+
+  .alert-icon {
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,59,59,0.08);
+    border: 1px solid rgba(255,59,59,0.3);
+    font-size: 22px;
+    animation: blink-soft 1.6s ease-in-out infinite;
+  }
+
+  @keyframes blink-soft {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,59,0.0); }
+    50% { box-shadow: 0 0 0 8px rgba(255,59,59,0.08); }
+  }
+
+  .screen-title {
+    text-align: center;
+    color: var(--red);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 6px;
+  }
+
+  .screen-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin: 0 0 22px;
+  }
+
+  .screen-sub strong {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .field-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  #password-input {
+    flex: 1;
+    background: #0a0e13;
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    padding: 11px 12px;
+    border-radius: 6px;
+    outline: none;
+    min-width: 0;
+  }
+
+  #password-input:focus {
+    border-color: var(--red);
+  }
+
+  #password-input.shake {
+    animation: shake 0.4s ease;
+    border-color: var(--red);
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-5px); }
+    40%, 60% { transform: translateX(5px); }
+  }
+
+  #toggle-visibility {
+    background: #0a0e13;
+    border: 1px solid var(--panel-border);
+    color: var(--text-dim);
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: var(--mono);
+  }
+
+  #toggle-visibility:hover { color: var(--text); }
+
+  #submit-btn {
+    width: 100%;
+    margin-top: 14px;
+    background: linear-gradient(180deg, #d92c2c, #b81f1f);
+    color: #fff;
+    border: 1px solid #f04e4e55;
+    padding: 13px;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+
+  #submit-btn:hover { filter: brightness(1.08); }
+  #submit-btn:active { transform: scale(0.99); }
+
+  .error-msg {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--red);
+    min-height: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .error-msg.visible { opacity: 1; }
+
+  /* --- Install / log screen --- */
+
+  #install-screen { display: none; }
+
+  .install-title {
+    text-align: center;
+    color: var(--orange);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin: 0 0 16px;
+  }
+
+  .progress-track {
+    height: 6px;
+    background: #0a0e13;
+    border: 1px solid var(--panel-border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--orange), var(--green));
+    transition: width 0.5s ease;
+  }
+
+  .log-list {
+    font-size: 12.5px;
+    line-height: 1.9;
+    min-height: 170px;
+  }
+
+  .log-line {
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .log-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+    color: var(--text);
+  }
+
+  .log-line.done::before {
+    content: "[OK] ";
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .log-line:not(.done)::before {
+    content: "> ";
+    color: var(--orange);
+  }
+
+  /* --- Success screen --- */
+
+  #success-screen { display: none; text-align: center; }
+
+  .shield {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: rgba(51,209,122,0.1);
+    border: 1px solid rgba(51,209,122,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--green);
+    animation: pop-in 0.5s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  @keyframes pop-in {
+    0% { transform: scale(0.4); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .success-title {
+    color: var(--green);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0 0 10px;
+  }
+
+  .success-sub {
+    color: var(--text);
+    font-size: 12.5px;
+    line-height: 1.7;
+    margin: 0 0 14px;
+  }
+
+  .success-footer {
+    color: var(--text-dim);
+    font-size: 11.5px;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 24px;
+    border-top: 1px dashed var(--panel-border);
+    padding-top: 14px;
+  }
+
+  #restart-btn {
+    background: none;
+    border: 1px solid var(--panel-border);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+
+  #restart-btn:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+  }
+
+  @media (max-width: 420px) {
+    .console__body { padding: 22px 16px 20px; }
+    #password-input { font-size: 14px; }
+  }
+</style>
+</head>
+<body data-state="alert">
+
+<div class="console">
+  <div class="console__bar">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="console__bar-title">SECURITY-NODE-07 :: session non chiffrée</span>
+    <span class="console__bar-status" id="status-badge">COMPROMIS</span>
+  </div>
+
+  <div class="console__body">
+
+    <div id="alert-screen">
+      <div class="alert-icon" aria-hidden="true">⚠</div>
+      <p class="screen-title">SYSTÈME COMPROMIS</p>
+      <p class="screen-sub">
+        Programme malveillant détecté : <strong>processus non identifié</strong><br />
+        Chiffrement non autorisé des données en cours. Intervention requise.
+      </p>
+
+      <label class="field-label" for="password-input">Entrez le mot de passe de neutralisation</label>
+      <div class="field-row">
+        <input
+          type="password"
+          id="password-input"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="••••••••••"
+        />
+        <button type="button" id="toggle-visibility" aria-label="Afficher le mot de passe">👁</button>
+      </div>
+      <p class="error-msg" id="error-msg">Mot de passe incorrect — tentative enregistrée.</p>
+
+      <button type="button" id="submit-btn">Désinstaller le programme malveillant</button>
+    </div>
+
+    <div id="install-screen">
+      <p class="install-title">DÉSINSTALLATION EN COURS</p>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="log-list" id="log-list"></div>
+    </div>
+
+    <div id="success-screen">
+      <div class="shield" aria-hidden="true">✓</div>
+      <p class="success-title">PROGRAMME NEUTRALISÉ</p>
+      <p class="success-sub">
+        Vos données sont de nouveau chiffrées et sécurisées.<br />
+        Le pirate a perdu l'accès à votre système. Bien joué.
+      </p>
+      <p class="success-footer">
+        L'intelligence collective et la vigilance ont eu raison de l'attaque.
+      </p>
+      <button type="button" id="restart-btn">↺ recommencer</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Mot de passe attendu, légèrement obfusqué (voir README pour le changer).
+  var EXPECTED_CODES = [83, 69, 78, 84, 73, 78, 69, 76, 76, 69];
+  function getExpected() {
+    return String.fromCharCode.apply(null, EXPECTED_CODES);
+  }
+
+  var body = document.body;
+  var passwordInput = document.getElementById("password-input");
+  var toggleBtn = document.getElementById("toggle-visibility");
+  var submitBtn = document.getElementById("submit-btn");
+  var errorMsg = document.getElementById("error-msg");
+  var statusBadge = document.getElementById("status-badge");
+
+  var alertScreen = document.getElementById("alert-screen");
+  var installScreen = document.getElementById("install-screen");
+  var successScreen = document.getElementById("success-screen");
+
+  var progressFill = document.getElementById("progress-fill");
+  var logList = document.getElementById("log-list");
+
+  var LOG_STEPS = [
+    "Authentification réussie...",
+    "Localisation du processus malveillant...",
+    "Isolation du processus malveillant...",
+    "Suppression des fichiers infectés...",
+    "Restauration du chiffrement des données...",
+    "Vérification de l'intégrité du système..."
+  ];
+
+  toggleBtn.addEventListener("click", function () {
+    var isPassword = passwordInput.type === "password";
+    passwordInput.type = isPassword ? "text" : "password";
+    toggleBtn.textContent = isPassword ? "🙈" : "👁";
+  });
+
+  function checkPassword() {
+    var value = (passwordInput.value || "").trim().toUpperCase();
+    if (value === getExpected()) {
+      startInstallSequence();
+    } else {
+      showError();
+    }
+  }
+
+  function showError() {
+    errorMsg.classList.add("visible");
+    passwordInput.classList.remove("shake");
+    // force reflow to restart the animation on repeated wrong attempts
+    void passwordInput.offsetWidth;
+    passwordInput.classList.add("shake");
+    passwordInput.select();
+  }
+
+  passwordInput.addEventListener("input", function () {
+    errorMsg.classList.remove("visible");
+  });
+
+  submitBtn.addEventListener("click", checkPassword);
+  passwordInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") checkPassword();
+  });
+
+  function startInstallSequence() {
+    alertScreen.style.display = "none";
+    installScreen.style.display = "block";
+    statusBadge.textContent = "NEUTRALISATION...";
+
+    logList.innerHTML = "";
+    var lineEls = LOG_STEPS.map(function (text) {
+      var el = document.createElement("div");
+      el.className = "log-line";
+      el.textContent = text;
+      logList.appendChild(el);
+      return el;
+    });
+
+    var delay = 300;
+    lineEls.forEach(function (el, index) {
+      var stepDelay = 700 + Math.random() * 500;
+      delay += stepDelay;
+      (function (el, index, atWhen) {
+        setTimeout(function () {
+          el.classList.add("visible");
+          progressFill.style.width = Math.round(((index + 1) / lineEls.length) * 100) + "%";
+        }, atWhen);
+        setTimeout(function () {
+          el.classList.add("done");
+        }, atWhen + stepDelay * 0.7);
+      })(el, index, delay);
+    });
+
+    setTimeout(showSuccess, delay + 900);
+  }
+
+  function showSuccess() {
+    installScreen.style.display = "none";
+    successScreen.style.display = "block";
+    statusBadge.textContent = "SÉCURISÉ";
+    body.setAttribute("data-state", "success");
+  }
+
+  document.getElementById("restart-btn").addEventListener("click", function () {
+    passwordInput.value = "";
+    passwordInput.type = "password";
+    toggleBtn.textContent = "👁";
+    errorMsg.classList.remove("visible");
+    progressFill.style.width = "0%";
+    statusBadge.textContent = "COMPROMIS";
+    body.setAttribute("data-state", "alert");
+    successScreen.style.display = "none";
+    installScreen.style.display = "none";
+    alertScreen.style.display = "block";
+    passwordInput.focus();
+  });
+})();
+</script>
+
+</body>
+</html>
