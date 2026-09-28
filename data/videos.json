@@ -944,5 +944,93 @@
     "resume": "La vidéo étudie le creusement des inégalités économiques mondiales et les leviers d'une redistribution plus équitable. Elle analyse les instruments fiscaux (impôt progressif, taxation du capital), les systèmes de protection sociale et le concept de revenu universel pour concilier équité sociale et incitation économique.",
     "pistePedagogique": "Support de débat sur la redistribution de la richesse, la politique fiscale, l'arbitrage équité/efficience et la justice redistributive.",
     "captation": 0
+  },
+  {
+    "youtubeId": "J9eFKxrcVQI",
+    "titre": "Alan, l'assureur mégalo qui a conquis Matignon｜Secret Sauce",
+    "chaine": "Les Echos",
+    "duree": "",
+    "theme": "Management & RH",
+    "discipline": "Management RH / Stratégie / Droit de la régulation",
+    "ton": "Captivant, dynamique et analytique",
+    "motsCles": [
+      "Alan",
+      "Insurtech",
+      "santé",
+      "agrément",
+      "transparence RH",
+      "productivité IA",
+      "marchés publics",
+      "Jean-Charles Samuelian"
+    ],
+    "resume": "Ce reportage décrypte la success-story d'Alan, la licorne française de l'assurtech valorisée 4 milliards d'euros. Il détaille l'obtention exceptionnelle de son agrément d'assureur, sa stratégie de dépoussiérage par l'UX mobile, l'internalisation des compétences, la conquête des marchés publics (Matignon, Transition écologique) ainsi que sa culture RH ultra-transparente.",
+    "pistePedagogique": "Étude idéale sur le contournement des barrières réglementaires à l'entrée, l'impact de l'IA sur la productivité des équipes et les nouveaux modes de management RH (transparence salariale, télétravail illimité).",
+    "captation": 0
+  },
+  {
+    "youtubeId": "Dq5Z1Jz4sVc",
+    "titre": "Les secrets du Primeur le plus riche de France",
+    "chaine": "Corentin Mercadal",
+    "duree": "",
+    "theme": "Supply Chain",
+    "discipline": "Gestion d'entreprise / Supply Chain / Droit du travail",
+    "ton": "D'enquête, immersif et critique",
+    "motsCles": [
+      "Grand Frais",
+      "Denis Dumont",
+      "GIE",
+      "produits frais",
+      "logistique",
+      "GMS",
+      "représentation du personnel",
+      "L214"
+    ],
+    "resume": "L'enquête explore la saga de Grand Frais (Prosol), fondée par Denis Dumont pour révolutionner le rayon frais face aux hypermarchés. Elle explique le modèle unique en Groupement d'Intérêt Économique (GIE) réunissant des spécialistes indépendants, la logistique ultra-réactive de nuit, l'implantation en entrées de ville, ainsi que les controverses (absence de CSE via l'éclatement des entités, empreinte carbone et bien-être animal).",
+    "pistePedagogique": "Analyse des structures juridiques en GIE, de l'efficience logistique du frais et des enjeux sociaux de la représentation du personnel.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "aOTBKQ4m3cM",
+    "titre": "Lunii, la boîte française qui a ringardisé les écrans｜Secret Sauce",
+    "chaine": "Les Echos",
+    "duree": "",
+    "theme": "Marketing",
+    "discipline": "Marketing de l'innovation / Stratégie industrielle / RSE",
+    "ton": "Inspirant, entrepreneurial et sincère",
+    "motsCles": [
+      "Lunii",
+      "Ma Fabrique à Histoires",
+      "relocalisation",
+      "hardware",
+      "alternative aux écrans",
+      "Nature et Découvertes",
+      "contenus audio",
+      "Maëlle Chassard"
+    ],
+    "resume": "Ce documentaire retrace l'histoire de Lunii et de sa conteuse « Ma Fabrique à Histoires » créée par Maëlle Chassard. Il met en lumière le défi du hardware en démarrant sans fonds, le partenariat décisif avec Nature & Découvertes, le rapatriement stratégique de la production en France (Bayonne) et le modèle économique hybride équilibré (50 % hardware, 50 % vente de contenus audio).",
+    "pistePedagogique": "Étude de la relocalisation industrielle, du modèle économique mixte (produit physique + contenu) et de la stratégie de distribution sélective.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "Jvy7KttdKOI",
+    "titre": "Qui a ruiné la Ligue 1 ?",
+    "chaine": "Les Echos",
+    "duree": "",
+    "theme": "Finance",
+    "discipline": "Finance de marché / Économie des médias / Gouvernance",
+    "ton": "Dramatique, investigatif et financier (« Business Drama »)",
+    "motsCles": [
+      "Ligue 1",
+      "droits TV",
+      "Mediapro",
+      "Canal+",
+      "LFP",
+      "CVC",
+      "DAZN",
+      "crise financière"
+    ],
+    "resume": "L'enquête retrace les 25 ans d'erreurs stratégiques ayant conduit à la crise financière du football français et à la chute de 60 % des droits TV. Elle analyse la guerre Canal+/TPS, le fiasco Mediapro/Téléfoot, le recours risqué au fonds d'investissement CVC (13 % des recettes à vie), la fixation irréaliste des prix de DAZN et la défaillance de la gouvernance de la LFP.",
+    "pistePedagogique": "Cas d'école sur la surévaluation des actifs immatériels, les risques du capital-investissement (Private Equity) et la régulation des droits de retransmission.",
+    "captation": 0
   }
 ]

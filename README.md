@@ -22,8 +22,8 @@ Volontairement absent : pas de champ "niveau" (retiré par rapport à la v1).
 index.html                   page unique
 css/styles.css               charte graphique (voir plus bas)
 js/app.js                    recherche, filtres, rendu des fiches
-data/videos.json             les 41 vidéos — source de vérité du site
-data/fiches.json             les 40 analyses éditoriales (tableau d'origine)
+data/videos.json             les 47 vidéos — source de vérité du site
+data/fiches.json             les 48 analyses éditoriales (tableau d'origine)
 scripts/fetch-metadata.mjs   récupère titre + chaîne via oEmbed
 scripts/import-fiches.mjs    rapproche fiches.json et videos.json par le titre
 .github/workflows/           bouton "Run workflow" qui lance les deux scripts
