@@ -1032,5 +1032,276 @@
     "resume": "L'enquête retrace les 25 ans d'erreurs stratégiques ayant conduit à la crise financière du football français et à la chute de 60 % des droits TV. Elle analyse la guerre Canal+/TPS, le fiasco Mediapro/Téléfoot, le recours risqué au fonds d'investissement CVC (13 % des recettes à vie), la fixation irréaliste des prix de DAZN et la défaillance de la gouvernance de la LFP.",
     "pistePedagogique": "Cas d'école sur la surévaluation des actifs immatériels, les risques du capital-investissement (Private Equity) et la régulation des droits de retransmission.",
     "captation": 0
+  },
+  {
+    "youtubeId": "pKQknFje9Rg",
+    "titre": "McDonald's : la chute brutale en Bourse & le piège des prix",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Marketing",
+    "discipline": "Gestion / Marketing / Finance",
+    "ton": "Analytique & financier",
+    "motsCles": [
+      "McDonald's",
+      "franchise",
+      "immobilier",
+      "élasticité-prix",
+      "stratégie de prix",
+      "Burger King",
+      "restauration"
+    ],
+    "resume": "Analyse de la perte de 70 Mds $ de valorisation de McDonald's liée aux hausses de prix, aux mouvements de contestation et à la révolte des franchisés. Étude du modèle foncier réel face à Burger King.",
+    "pistePedagogique": "Étude de l'élasticité-prix, de la gestion du réseau de franchise et de la stratégie tarifaire en période d'inflation.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "BSDUpnJaK_Y",
+    "titre": "La chute d'Auchan & la crise des hypermarchés",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Stratégie",
+    "discipline": "Grande distribution / Stratégie / RH",
+    "ton": "D'enquête & économique",
+    "motsCles": [
+      "Auchan",
+      "grande distribution",
+      "hypermarché",
+      "Intermarché",
+      "Casino",
+      "restructuration",
+      "retail"
+    ],
+    "resume": "Analyse du déclin d'Auchan et des hypermarchés face à l'essor du discount. Examen des alliances d'achat (Casino, Intermarché) et des conséquences sociales sur l'emploi.",
+    "pistePedagogique": "Mutations du retail, alliances d'achat et management des restructurations.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "D5j1QuIxz14",
+    "titre": "Anta Sports : sous-traitant chinois devenu géant",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Stratégie",
+    "discipline": "Management stratégique / Supply Chain",
+    "ton": "Stratégique & géopolitique",
+    "motsCles": [
+      "Anta Sports",
+      "sous-traitance",
+      "Nike",
+      "Adidas",
+      "Salomon",
+      "Fila",
+      "supply chain",
+      "Chine"
+    ],
+    "resume": "Récit de l'ascension d'Anta Sports, atelier de Jinjiang devenu géant mondial (Fila, Salomon, Arc'teryx, Puma). Pivot stratégique et impact des crises géopolitiques (coton du Xinjiang).",
+    "pistePedagogique": "Passage de la sous-traitance (OEM) à la marque globale (OBM).",
+    "captation": 0
+  },
+  {
+    "youtubeId": "Zo_1adHWmvQ",
+    "titre": "Hippopotamus : l'erreur stratégique et le sauvetage",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Marketing",
+    "discipline": "Marketing / Turnaround",
+    "ton": "Business story & pragmatique",
+    "motsCles": [
+      "Hippopotamus",
+      "Groupe Bertrand",
+      "Groupe Flo",
+      "restauration",
+      "repositionnement",
+      "franchise"
+    ],
+    "resume": "Étude du déclin et de la renaissance d'Hippopotamus. Perte d'identité sous le Groupe Flo et repositionnement réussi par le Groupe Bertrand (Burger King France).",
+    "pistePedagogique": "Repositionnement de marque, redéfinition du concept client et relance de réseau.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "QCiTcqpYvrc",
+    "titre": "Nike : comment ils ont gâché 50 ans d'avance",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Stratégie",
+    "discipline": "Stratégie / Marketing / Finance",
+    "ton": "Critique & analytique",
+    "motsCles": [
+      "Nike",
+      "Direct-to-Consumer",
+      "D2C",
+      "innovation",
+      "John Donahoe",
+      "Elliott Hill",
+      "capital marque"
+    ],
+    "resume": "Analyse de la crise boursière de Nike sous John Donahoe. Dérives du tout Direct-to-Consumer (D2C), suppression des équipes sport et rachats d'actions (17 Mds $).",
+    "pistePedagogique": "Risques du modèle D2C exclusif et gestion du capital marque.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "BrPb5y1vqyE",
+    "titre": "Rakuten France / PriceMinister : la fermeture",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Stratégie",
+    "discipline": "Stratégie e-commerce / Droit",
+    "ton": "Dramatique & e-commerce",
+    "motsCles": [
+      "Rakuten",
+      "PriceMinister",
+      "e-commerce",
+      "Pierre Kosciusko-Morizet",
+      "rebranding",
+      "Amazon",
+      "faillite"
+    ],
+    "resume": "Récit de la fermeture définitive de Rakuten France (ex-PriceMinister). Des débuts de PKM au rachat japonais, analyse de l'erreur du rebranding et de la concurrence d'Amazon.",
+    "pistePedagogique": "Fusions-acquisitions internationales, valeur de marque et rebranding.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "MnW7vTQKvnc",
+    "titre": "EasyJet : la fragilité cachée et le rachat",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Finance",
+    "discipline": "Économie des transports / Finance",
+    "ton": "Financier & sectoriel",
+    "motsCles": [
+      "EasyJet",
+      "low-cost",
+      "transport aérien",
+      "rachat",
+      "Private Equity",
+      "Ryanair",
+      "stratégie"
+    ],
+    "resume": "Examen de la perte d'indépendance d'EasyJet face à l'offre de rachat de 6,6 Mds € par un fonds américain. Contraintes du low-cost et rôle du Private Equity.",
+    "pistePedagogique": "Modèle low-cost, structure de coûts fixes et levier du Private Equity.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "ne6JH47ieTk",
+    "titre": "Lidl : le magasin du pauvre devenu référence",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Marketing",
+    "discipline": "Marketing / Supply Chain",
+    "ton": "Sociologique & marketing",
+    "motsCles": [
+      "Lidl",
+      "hard-discount",
+      "Smart Quality",
+      "grande distribution",
+      "logistique",
+      "Parkside",
+      "Carrefour"
+    ],
+    "resume": "Transformation de Lidl du hard-discount vers la stratégie Smart Quality. Rigueur logistique allemande, réduction des références et succès de Parkside et Silvercrest.",
+    "pistePedagogique": "Repositionnement d'image, marketing de la rareté et rationalisation logistique.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "vhPrgCvhdFo",
+    "titre": "Zoom : l'erreur à 120 milliards $",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Systèmes d'information",
+    "discipline": "Management des SI / Stratégie SaaS",
+    "ton": "Tech & gestion des risques",
+    "motsCles": [
+      "Zoom",
+      "visioconférence",
+      "Microsoft Teams",
+      "Google Meet",
+      "hypercroissance",
+      "SaaS",
+      "télétravail"
+    ],
+    "resume": "Cas d'étude sur Zoom dont la valeur a chuté de plus de 75 %. Piège du monoproduit conjoncturel, Zoom fatigue et concurrence de Microsoft Teams et Google Meet.",
+    "pistePedagogique": "Après-hypercroissance, vulnérabilité des pure-players et écosystèmes.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "zycDWfy2emM",
+    "titre": "Airbnb : les fissures du géant collaboratif",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Droit",
+    "discipline": "Droit du tourisme / Économie des plateformes",
+    "ton": "Droit & stratégique",
+    "motsCles": [
+      "Airbnb",
+      "plateforme collaborative",
+      "régulation",
+      "hébergement touristique",
+      "hôtes",
+      "conciergerie"
+    ],
+    "resume": "Enquête sur les tensions entre Airbnb, ses hôtes et les villes. Explosion des frais, régulations locales (Paris, New York) et risque de standardisation hôtelière.",
+    "pistePedagogique": "Régulation des plateformes, conflits d'intérêts et cadre juridique.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "lZ4RmhAnt84",
+    "titre": "Uber : hypercroissance et quête de rentabilité",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Droit",
+    "discipline": "Droit du travail / Éthique",
+    "ton": "D'investigation & juridique",
+    "motsCles": [
+      "Uber",
+      "VTC",
+      "ubérisation",
+      "Travis Kalanick",
+      "droit du travail",
+      "statut d'indépendant",
+      "régulation"
+    ],
+    "resume": "Analyse de l'expansion d'Uber sous Travis Kalanick. Méthodes agressives (contournement légal, pertes financées par le VC) et pivot récent vers la rentabilité nette.",
+    "pistePedagogique": "Ubérisation, statut des chauffeurs (salariés vs indépendants) et gouvernance.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "NxKQ7jtnURY",
+    "titre": "Adobe : la contestation des créateurs & crise SaaS",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Marketing",
+    "discipline": "Marketing SaaS / Propriété intellectuelle",
+    "ton": "Critique & propriété intellectuelle",
+    "motsCles": [
+      "Adobe",
+      "Creative Cloud",
+      "abonnement SaaS",
+      "Figma",
+      "IA générative",
+      "Firefly",
+      "Canva"
+    ],
+    "resume": "Analyse de la crise d'Adobe (Photoshop). Rejet des abonnements forcés, échec du rachat de Figma (20 Mds $), litiges IA Firefly et essor de Canva et DaVinci.",
+    "pistePedagogique": "Rétention client en SaaS, verrouillage propriétaire et éthique IA.",
+    "captation": 0
+  },
+  {
+    "youtubeId": "6awKSOjsYT8",
+    "titre": "Lacoste : reconquête d'une image de marque",
+    "chaine": "Entrepreneur Mindset",
+    "duree": "",
+    "theme": "Marketing",
+    "discipline": "Marketing de luxe / Capital marque",
+    "ton": "Marketing de marque",
+    "motsCles": [
+      "Lacoste",
+      "image de marque",
+      "luxe accessible",
+      "positionnement",
+      "licences",
+      "prêt-à-porter"
+    ],
+    "resume": "Analyse du repositionnement de Lacoste. Dilution de sa valeur premium dans les années 2000 (licences incontrôlées) et reconquête réussie vers le luxe accessible.",
+    "pistePedagogique": "Gestion du capital marque, réseau de licences et repositionnement.",
+    "captation": 0
   }
 ]
